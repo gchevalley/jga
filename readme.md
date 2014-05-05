@@ -16,12 +16,12 @@ La majorité des paramètres sur lesquels peuvent influencer l'utilisateur se tr
 * nbre_generation: définit le nombre d’itérations de l’algorithme génétique.
 * selection_method: la méthode de sélection, à choisir parmi Selection_Methods.tournoi, Selection_Methods.rang, Selection_Methods.roulette_proportionnelle dans le main. Tout comme le pourcentage d’élite, ce paramètre est facultatif est sera fixé à .tournoi s’il n’a pas été précisé par l’utilisateur. 
 
-Les autres paramètres relatifs aux méthodes de sélection se trouve dans la fonction .selection de la classe Population.
-La méthode du tournoi dispose d'un second paramètre permettant de choisir le nombre d'individus qui combattent dans un même tournoi.
+Les autres paramètres relatifs aux méthodes de sélection se trouve directement dans la fonction .selection() de la classe Population.
+La méthode du tournoi dispose d'un second paramètre permettant de choisir le nombre d'individus qui combattent dans un même tournoi. Il est fixé à 5.
 
-Notre méthode de crossover propose en paramètre le nombre de séparateurs. Par défaut ce paramètre est fixé à 2 à travers la ligne crossover(parent1, parent2, 2) située dans la fonction .generation de la classe Population.
+Notre méthode de crossover propose en paramètre le nombre de séparateurs. Par défaut ce paramètre est fixé à 2 à travers la ligne crossover(parent1, parent2, 2) située dans la fonction .generation() de la classe Population.
  
-Les paramètres de la méthode .draw_with_transformation, qui s’applique à un objet Individu, permettent de formatter l’affichage d’une solution. Le premier paramètre permet de définir le nombre de caractères après lequel il y aura un retour à la ligne\. Le second paramètre permet de définir en quel caractère le 0 est transformé et le troisième paramètre permet de définir en quel caractère le 1 est transformé. 
+Les paramètres de la méthode .draw_with_transformation(), qui s’applique à un objet Individu, permettent de formatter l’affichage d’une solution. Le premier paramètre permet de définir le nombre de caractères après lequel il y aura un retour à la ligne. Le second paramètre permet de définir en quel caractère le 0 est transformé et le troisième paramètre permet de définir en quel caractère le 1 est transformé. 
 
 
 Des informations additionnelles sur le fonctionnement de notre implémentation sont fournies en commentaires du code source.
