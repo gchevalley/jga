@@ -2,8 +2,8 @@ package jga;
 
 import java.util.Random;
 import java.util.Arrays;
-import java.util.ArrayList; // pour conserver l historique des populations sans devoir perdre du temps a reconstuire des tableaux lors redimensionnement car le nombre de generation n est pas connu lors de l initialisation de l objet Population
-import java.util.Comparator; // interface necessaire a l utilisation de la fonction .sort() des objets de type Arrays
+import java.util.ArrayList; /* pour conserver l historique des populations sans devoir perdre du temps a reconstuire des tableaux lors redimensionnement car le nombre de generation n est pas connu lors de l initialisation de l objet Population */
+import java.util.Comparator; /* interface necessaire a l utilisation de la fonction .sort() des objets de type Arrays */
 
 public class Population {
 
@@ -674,7 +674,8 @@ public class Population {
 	 *         avec la meilleure fitness
 	 */
 	public Individual getBestIndividu() {
-		this.eval_current_state(); // class l'Array .oIndividu du meilleur au pire individu
+		this.eval_current_state(); // class l'Array .oIndividu du meilleur au
+									// pire individu
 		return this.oIndividus[0];
 	}
 }
