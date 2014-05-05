@@ -14,22 +14,16 @@ public class Main {
 		
 		int nbre_generation = 100;
 
-		System.out.println("longueur target" + target.length());
-
-		/*
-		 * ici la methode de selection par defaut est tournoi, pour changer de
-		 * methode ecrivez a la place de "Selection_Methods.tournoi",
-		 * "Selection_Methods.[methode souhaitee:"
-		 * rang" ou "roulette_proportionnelle"]"
-		 */
 		Population oPop = new Population(size_pop, target,
 				selection_method, p_crossover, p_mutation, p_elite);
 
 		for (int i = 0; i < nbre_generation; i++) {
 			oPop.generation();
 		}
+		
 		System.out.println("Best individu after " + nbre_generation
 				+ " rounds: ");
+		
 		oPop.getBestIndividu().draw_with_transformation(16, " ", "*");
 	}
 }

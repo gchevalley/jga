@@ -23,8 +23,8 @@ public class Population {
 					 */
 
 	/*
-	 * l un de des parametres du constructeur principal est la methode de
-	 * selection qui peut etre pickee directement de cette enumeration
+	 * l un des parametres du constructeur principal est la methode de selection
+	 * qui peut etre pickee directement dans cette enumeration
 	 */
 	public enum Selection_Methods {
 		tournoi, roulette_proportionnelle, rang
@@ -95,13 +95,36 @@ public class Population {
 
 	/**
 	 * 
+	 * Alias qui imposera la selection par tournoi couplee avec une elite de 10%
+	 * des meilleurs individus, si l utilisateur n a pas fait son choix parmi l
+	 * enumeration Selection_Methods
+	 */
+	public Population(int size_pop, String target,
+			Selection_Methods selection_method, double p_crossover,
+			double p_mutation) {
+		this(size_pop, target, selection_method, p_crossover, p_mutation, 0.10);
+	}
+
+	/**
+	 * 
 	 * Alias qui imposera la selection par tournoi, si l utilisateur n a pas
-	 * fait son choix parmis l enumeration Selection_Methods
+	 * fait son choix parmi l enumeration Selection_Methods
 	 */
 	public Population(int size_pop, String target, double p_crossover,
 			double p_mutation, double p_elite) {
 		this(size_pop, target, Selection_Methods.tournoi, p_crossover,
 				p_mutation, p_elite);
+	}
+
+	/**
+	 * 
+	 * Alias qui imposera une selection de 10% de elite des meilleurs individus,
+	 * si l utilisateur n a pas fait son choix pour le parametre p_elite
+	 */
+	public Population(int size_pop, String target, double p_crossover,
+			double p_mutation) {
+		this(size_pop, target, Selection_Methods.tournoi, p_crossover,
+				p_mutation, 0.10);
 	}
 
 	/**
@@ -190,7 +213,8 @@ public class Population {
 		case tournoi:
 			return this.selection_tournoi_with_elite(5, this.p_elite);
 		case roulette_proportionnelle:
-			return this.selection_roulette_proportionnelle_with_elite(this.p_elite);
+			return this
+					.selection_roulette_proportionnelle_with_elite(this.p_elite);
 		case rang:
 			return this.selection_rang_with_elite(this.p_elite);
 		default:
@@ -637,7 +661,7 @@ public class Population {
 		}
 		/*
 		 * impose la chaine binaire des nouveaux individus pour eviter d'avoir
-		 * un objet aleatoire
+		 * un objet aleatoire, un second constructeur est prevu pour ce cas la
 		 */
 		two_kids[0] = new Individual(newbinstring1);
 		two_kids[1] = new Individual(newbinstring2);
@@ -650,7 +674,7 @@ public class Population {
 	 *         avec la meilleure fitness
 	 */
 	public Individual getBestIndividu() {
-		this.eval_current_state();
+		this.eval_current_state(); // class l'Array .oIndividu du meilleur au pire individu
 		return this.oIndividus[0];
 	}
 }
