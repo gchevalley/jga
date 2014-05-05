@@ -10,6 +10,7 @@ public class Population {
 	int size_pop; // nombre d individu completement initialise
 	double p_crossover; // probabilite de reproduction
 	double p_mutation; // probabilite de mutation
+	double p_elite;
 	int generation_state = 0; /*
 							 * nombre de fois que la function .generation() a
 							 * ete appelee
@@ -53,7 +54,7 @@ public class Population {
 	 */
 	public Population(int size_pop, String target,
 			Selection_Methods selection_method, double p_crossover,
-			double p_mutation) {
+			double p_mutation, double p_elite) {
 		this(size_pop); /*
 						 * demarre avec l initialisation des variables de class
 						 * en appelant un autre constructeur
@@ -62,6 +63,7 @@ public class Population {
 		this.selection_method = selection_method;
 		this.p_crossover = p_crossover;
 		this.p_mutation = p_mutation;
+		this.p_elite = p_elite;
 		// creation des objet Individus aleatoire
 		for (int i = 0; i < oIndividus.length; i++) {
 			oIndividus[i] = new Individual(this.target.length()); /*
@@ -97,9 +99,9 @@ public class Population {
 	 * fait son choix parmis l enumeration Selection_Methods
 	 */
 	public Population(int size_pop, String target, double p_crossover,
-			double p_mutation) {
+			double p_mutation, double p_elite) {
 		this(size_pop, target, Selection_Methods.tournoi, p_crossover,
-				p_mutation);
+				p_mutation, p_elite);
 	}
 
 	/**
@@ -186,11 +188,11 @@ public class Population {
 	public Population selection() {
 		switch (this.selection_method) {
 		case tournoi:
-			return this.selection_tournoi_with_elite(5, 0.10);
+			return this.selection_tournoi_with_elite(5, this.p_elite);
 		case roulette_proportionnelle:
-			return this.selection_roulette_proportionnelle_with_elite(0.10);
+			return this.selection_roulette_proportionnelle_with_elite(this.p_elite);
 		case rang:
-			return this.selection_rang_with_elite(0.10);
+			return this.selection_rang_with_elite(this.p_elite);
 		default:
 			return this.selection_tournoi_with_elite(5, 0.10);
 		}
